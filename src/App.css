@@ -1,0 +1,47 @@
+/* .container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+} */
+
+/* .tiptap-preview-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.tiptap-preview {
+  min-height: 100px;
+  margin-bottom: 10px;
+}
+
+.tiptap-submit-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+} */
+
+.form-comment {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-comment button[type="submit"] {
+  margin-left: auto;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+}

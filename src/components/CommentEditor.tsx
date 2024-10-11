@@ -32,7 +32,41 @@ const extensions = [
   BulletList,
   Highlight,
   Underline,
-  Mention,
+  Mention.configure({
+    suggestion: {
+      items: ({ query }) => {
+        return [
+          "Javier",
+          "Yanji",
+          "Tom Cruise",
+          "Madonna",
+          "Jerry Hall",
+          "Joan Collins",
+          "Winona Ryder",
+          "Christina Applegate",
+          "Alyssa Milano",
+          "Molly Ringwald",
+          "Ally Sheedy",
+          "Debbie Harry",
+          "Olivia Newton-John",
+          "Elton John",
+          "Michael J. Fox",
+          "Axl Rose",
+          "Emilio Estevez",
+          "Ralph Macchio",
+          "Rob Lowe",
+          "Jennifer Grey",
+          "Mickey Rourke",
+          "John Cusack",
+          "Matthew Broderick",
+          "Justine Bateman",
+          "Lisa Bonet",
+        ]
+          .filter((item) => item.toLowerCase().startsWith(query.toLowerCase()))
+          .slice(0, 5);
+      },
+    },
+  }),
   Heading,
   Clear,
 ];
@@ -40,7 +74,7 @@ const extensions = [
 function CommentEditor({ onSubmit }: CommentEditorProps) {
   const [content, onChangeContent] = useState("");
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (onSubmit) {
       onSubmit(content);

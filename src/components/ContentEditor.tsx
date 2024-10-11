@@ -1,6 +1,5 @@
 import { memo } from "react";
 import RichTextEditor, {
-  locale,
   BaseKit,
   Bold,
   BulletList,
@@ -18,7 +17,10 @@ import RichTextEditor, {
   ExportWord,
   ImageGif,
   SlashCommand,
+  // ImportWord,
+  // HorizontalRule,
 } from "reactjs-tiptap-editor";
+import { GIPHY_API_KEY } from "../config";
 
 interface ContentEditorProps {
   isDark: boolean;
@@ -47,14 +49,19 @@ const extensions = [
   Highlight,
   Underline,
   TextDirection,
-  TextAlign,
+  TextAlign.configure({ types: ["heading", "paragraph"] }),
   Clear,
   // insert and feature plugins
+  // ImportWord,
   SlashCommand,
   Link,
   Emoji,
   ExportWord,
-  ImageGif,
+  // HorizontalRule,
+  ImageGif.configure({
+    // Giphy API key
+    GIPHY_API_KEY: GIPHY_API_KEY,
+  }),
 ];
 
 function ContentEditor({

@@ -1,5 +1,6 @@
 import DOMPurify from "dompurify";
 import { memo } from "react";
+import "reactjs-tiptap-editor/style.css";
 
 interface PreviewContentProps {
   content: string;
@@ -18,7 +19,7 @@ function PreviewContent({ content }: PreviewContentProps) {
       }}
     >
       <div
-        className="preview-content"
+        className="tiptap-preview ProseMirror"
         dangerouslySetInnerHTML={{ __html: sanitizedContent }}
       ></div>
     </div>

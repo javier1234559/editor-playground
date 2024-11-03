@@ -10,6 +10,7 @@ import RichTextEditor, {
   TextDirection,
   TextAlign,
   Highlight,
+  Italic,
   Underline,
   History,
   Emoji,
@@ -20,7 +21,10 @@ import RichTextEditor, {
   // ImportWord,
   // HorizontalRule,
 } from "reactjs-tiptap-editor";
-import { GIPHY_API_KEY } from "../config";
+import { GIPHY_API_KEY } from "../../setting";
+import { UseEditorOptions } from "@tiptap/react";
+import { CustomBubbleMenu } from "./CustomBubbleMenu";
+import { useEditorState } from "./useEditorState";
 
 interface ContentEditorProps {
   isDark: boolean;
@@ -41,6 +45,7 @@ const extensions = [
   }),
   // Format plugins
   Heading,
+  Italic,
   History,
   Indent,
   Bold,
@@ -69,14 +74,33 @@ function ContentEditor({
   content,
   onChangeContent,
 }: ContentEditorProps) {
+  const { isReady, editor, editorRef } = useEditorState();
+
+  const customOption: UseEditorOptions = {
+    onUpdate: ({ editor }) => {
+      const wordCount = editor
+        .getText()
+        .split(/\s+/)
+        .filter((word) => word.length > 0).length;
+      console.log("Word count:", wordCount);
+    },
+  };
+
   return (
-    <RichTextEditor
-      output="html"
-      dark={isDark}
-      content={content}
-      onChangeContent={onChangeContent}
-      extensions={extensions}
-    />
+    <div className="editor-container">
+      <RichTextEditor
+        ref={editorRef}
+        output="html"
+        dark={isDark}
+        content={content}
+        onChangeContent={onChangeContent}
+        extensions={extensions}
+        useEditorOptions={customOption}
+        // disable bubble menu and add custom one
+        hideBubble
+      />
+      {isReady && editor && <CustomBubbleMenu editor={editor} />}
+    </div>
   );
 }
 

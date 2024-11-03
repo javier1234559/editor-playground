@@ -1,51 +1,30 @@
-import { useState } from "react";
-
 // Import CSS
 import "./App.css";
-import "reactjs-tiptap-editor/style.css";
-import ContentEditor from "./components/ContentEditor";
-import PreviewContent from "./components/PreviewContent";
-import CommentEditor from "./components/CommentEditor";
+import HungTipTap from "./components/HungTipTap/HungTipTap";
+// import "./components/TipTap/styles.scss";
+
+// import PreviewContent from "./components/HungTipTap/PreviewContent";
+// import ContentEditor from "./components/HungTipTap/ContentEditor";
+// import CommentEditor from "./components/HungTipTap/CommentEditor";
 
 const App = () => {
-  const [isDark, setIsDark] = useState(false);
-  const [content, setContent] = useState("");
-  const [comment, setComment] = useState("");
-
-  const onChangeContent = (value: string) => {
-    setContent(value);
-  };
-
-  const onChangeComment = (value: string) => {
-    setComment(value);
-  };
-
   return (
     <>
-      <label>
-        <input
-          type="checkbox"
-          checked={isDark}
-          onChange={(e) => setIsDark(e.target.checked)}
-        />
-        Dark Mode
-      </label>
-
-      <div className="container"></div>
-      <h1>Reactjs-tiptap-editor</h1>
-      <div className="container">
-        <PreviewContent content={content} />
-        <ContentEditor
-          isDark={isDark}
-          content={content}
-          onChangeContent={onChangeContent}
-        />
+      <div>
+        <h1>Hung TipTap</h1>
+        <HungTipTap />
       </div>
 
-      <div className="container" style={{ marginTop: "100px" }}>
-        <PreviewContent content={comment} />
-        <CommentEditor onSubmit={onChangeComment} />
-      </div>
+      {/* <div>
+        <h1>TipTap</h1>
+        <TiptapEditor />
+      </div> */}
+
+      {/* 
+      <div>
+        <h1 className="container p-8 ">Novel</h1>
+        <NovelEditor />
+      </div> */}
     </>
   );
 };
